@@ -27,7 +27,7 @@ function App() {
       connect({servers: ["ws://0.0.0.0:9090"], waitOnFirstConnect: true})
         .then((nc) => {
           setConnection(nc)
-          nc.subscribe( ">", {callback: addMessage})
+          nc.subscribe( ">", {callback: addMessage}) //n JavaScript clients (websocket, Deno, or Node) subscriptions work as an async iterator - clients simply loop to process messages as they become available.
         })
         .catch((err) => {
           setError("error connecting");
@@ -46,6 +46,8 @@ function App() {
         ? (<Messages messages={messages} />)
         : ("No messages")
         }
+      <br></br>
+      <button onClick={() => {nc.publish("hello", sc.encode("again"))}}>publish</button>
     </div>
   );
 }
