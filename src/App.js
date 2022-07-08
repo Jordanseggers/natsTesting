@@ -15,11 +15,11 @@ function App() {
     const {subject, reply} = msg;
     const data = sc.decode(msg.data);
     const m = {subject, reply, data, key, time: new Date().toUTCString()};
-    messages.unshift(m);
+    messages.unshift(m); //I know this is wrong but the guy who works at nats did it and when I fix it, it messes up other stuff. And in the interest of sharing quickly, I'm letting it go.
     const a = messages.slice(0, 10);
     setMessages(a);
     
-    console.info(msg.subject);
+    console.log(msg.subject);
   }
 
   useEffect(() => {
