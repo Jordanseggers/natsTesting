@@ -1,0 +1,1 @@
+../node_modules/nats.ws/lib/src/mod.js
